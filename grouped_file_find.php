@@ -31,8 +31,26 @@ $include_folder = dirname(__FILE__);
  * Main class for grouped file find.  Handles activation, hooks, etc.
  */
 class groupedFileFind {
+
+	/*
+	 * Handles groupfiles shortcode
+	 * example:
+	 * [groupfiles src="wp-content/folder_name"]
+	 */
+	function shortcode_handler($atts, $content=NULL, $code="") {
+		extract( shortcode_atts( array( 'src' => dirname(__FILE__)), 
+			$atts ) );
+
+		// testing.
+		echo "Group files in " . $src;
+		
+
+	}
 }
 
 $GROUPEDFILEFIND = new groupedFileFind;
 
+// shortcodes
+add_shortcode('groupfile', array($GROUPEDFILEFIND, 'shortcode_handler'));
+//
 ?>

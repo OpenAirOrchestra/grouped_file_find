@@ -13,7 +13,7 @@ This plugin is for displaying links to files in a directory tree.  Instead of us
 
 For the initial version, files considered similar if their file names start the same.  Regular expression matches and other criteria are planned for future versions.
 
-TODO: describe shortcoes here.
+TODO: describe shortcodes here.
 
 == Installation ==
 
