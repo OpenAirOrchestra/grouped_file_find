@@ -90,6 +90,18 @@ class groupedFileFind {
 							}
 						}
 
+						// strip trailing 'p1, p2, p3'
+						$count = count($words);
+						if ($count > 1) {
+							$last = $words[$count - 1];
+							if ($last == 'p1' || 
+								$last == 'p2' ||
+								$last == 'p3') {
+								array_pop($words);
+								$name = implode(" ", $words);
+							}
+						}
+
 						if (strlen($name) > 0) {
 							$paths[$fullpath] = $name;
 						}
