@@ -79,6 +79,17 @@ class groupedFileFind {
 						// treat _ as ' '
 						$name = strtr($name, "-_", "  ");
 
+						// strip trailing number
+						$words = explode(' ', $name);
+						$count = count($words);
+						if ($count > 1) {
+							$last = $words[$count - 1];
+							if (is_numeric($last)) {
+								array_pop($words);
+								$name = implode(" ", $words);
+							}
+						}
+
 						if (strlen($name) > 0) {
 							$paths[$fullpath] = $name;
 						}
