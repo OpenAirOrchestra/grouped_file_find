@@ -70,7 +70,7 @@ class groupedFileFind {
 
 		foreach ($groups as $key => $group) {
 			    sort($group);
-			    echo "<h2>$key</h2>\n";
+			    echo "<h4>$key</h4>\n";
 			    echo "<ul>\n";
 			    foreach ($group as $path) {
 				    echo "<li>$path</li>";
