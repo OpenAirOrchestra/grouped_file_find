@@ -76,7 +76,7 @@ class groupedFileFind {
 	 */
 	function group_files($dir) {
 
-		$all_files = find_files($dir);
+		$all_files = $this->all_files($dir);
 
 		$groups = array();
 
