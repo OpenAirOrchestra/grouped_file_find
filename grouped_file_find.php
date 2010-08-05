@@ -90,7 +90,7 @@ class groupedFileFind {
 		$groups['bar'] = array( 'Bb/barfoob', 'Bb/barfooz');
 		$groups['paths'] = array_keys($all_files);
 
-		// ksort($groups);
+		ksort($groups);
 
 		return $groups;
 	}
@@ -101,7 +101,7 @@ class groupedFileFind {
 	function print_grouped_files($groups) {
 
 		foreach ($groups as $key => $group) {
-			    sort($group);
+			    // sort($group);
 			    echo "<h4>$key</h4>\n";
 			    echo "<ul>\n";
 			    foreach ($group as $path) {
