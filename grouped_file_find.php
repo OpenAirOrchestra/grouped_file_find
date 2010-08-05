@@ -163,7 +163,10 @@ class groupedFileFind {
 
 				    $relpath = str_replace(ABSPATH, "", $path);
 
-				    $url = get_bloginfo('url') . '/' . urlencode($relpath);
+				    $url = urlencode($relpath);
+				    $url = str_replace("%2F", "/", $url);
+
+				    $url = get_bloginfo('url') . '/' . $url;
 
 				    echo "<li>$url</li>";
 			    }
