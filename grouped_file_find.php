@@ -36,13 +36,15 @@ class groupedFileFind {
 	 * Handles groupfiles shortcode
 	 * example:
 	 * [groupfiles src="wp-content/folder_name"]
+	 * [groupfiles src="wp-content/folder_name" maxdepth="2"]
 	 */
 	function shortcode_handler($atts, $content=NULL, $code="") {
-		extract( shortcode_atts( array( 'src' => dirname(__FILE__)), 
+		extract( shortcode_atts( array( 'src' => dirname(__FILE__),
+						'maxdepth' => 0), 
 			$atts ) );
 
 
-		$groups = $this->group_files(ABSPATH . $src);
+		$groups = $this->group_files(ABSPATH . $src, $maxdepth);
 		if ($groups && count($groups) > 0) {
 			$this->print_grouped_files($groups);
 		}
@@ -51,17 +53,18 @@ class groupedFileFind {
 	/*
 	 * Finds all files in a directory recursively 
 	 */
-	function all_files($dir) {
+	function all_files($dir, $depth, $maxdepth) {
 		$paths = array();
 
-		if(is_dir($dir) && $handle = opendir($dir)) {
+		if ($maxdepth && $depth < $maxdepth && 
+			is_dir($dir) && $handle = opendir($dir)) {
 
 			while(false !==($file = readdir($handle))) {
 				
 				if($file != '..' && $file != '.') {
 					$fullpath = $dir . '/' . $file;
 					if (is_dir($fullpath)) {
-						$paths = array_merge($paths, $this->all_files($fullpath));
+						$paths = array_merge($paths, $this->all_files($fullpath, $depth + 1, $maxdepth));
 					} else {
 						array_push($paths, $fullpath);
 					}
@@ -74,9 +77,9 @@ class groupedFileFind {
 	/*
 	 * Groups files and puts 'em in associateive array keyed by group
 	 */
-	function group_files($dir) {
+	function group_files($dir, $maxdepth) {
 
-		$all_files = $this->all_files($dir);
+		$all_files = $this->all_files($dir, 0, $maxdepth);
 
 		$groups = array();
 
