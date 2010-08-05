@@ -19,8 +19,7 @@ TODO: describe shortcodes here.
 
 1. Upload `grouped_file_find.zip` to the `/wp-content/plugins/` directory and unzip.
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. blah blah blah [shortcode] blah blah blah
-4. blah blah blah [shortcode] blah blah blah
+3. Add shortcodes to list directories, like this: [groupfiles src="wp-content/charts"]
 
 == Frequently Asked Questions ==
 

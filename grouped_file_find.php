@@ -41,8 +41,9 @@ class groupedFileFind {
 		extract( shortcode_atts( array( 'src' => dirname(__FILE__)), 
 			$atts ) );
 
+		$dir = ABSPATH . $src;
 		// testing.
-		echo "Group files in " . $src;
+		echo "Group files in " . $dir;
 		
 
 	}
@@ -51,6 +52,7 @@ class groupedFileFind {
 $GROUPEDFILEFIND = new groupedFileFind;
 
 // shortcodes
-add_shortcode('groupfile', array($GROUPEDFILEFIND, 'shortcode_handler'));
+add_shortcode('groupfiles', array($GROUPEDFILEFIND, 'shortcode_handler'));
+
 //
 ?>
