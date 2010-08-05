@@ -41,11 +41,42 @@ class groupedFileFind {
 		extract( shortcode_atts( array( 'src' => dirname(__FILE__)), 
 			$atts ) );
 
-		$dir = ABSPATH . $src;
-		// testing.
-		echo "Group files in " . $dir;
-		
 
+		$groups = $this->group_files(ABSPATH . $src);
+		if ($groups && count($groups) > 0) {
+			$this->print_grouped_files($groups);
+		}
+	}
+
+	/*
+	 * Groups files and puts 'em in associateive array keyed by group
+	 */
+	function group_files($dir) {
+
+		$groups = array();
+
+		$groups['foo'] = array( 'Bb/foob', 'Bb/fooz', 'Bb/fooa');
+		$groups['bar'] = array( 'Bb/barfoob', 'Bb/barfooz');
+
+		ksort($groups);
+
+		return $groups;
+	}
+
+	/*
+	 * Outputs grouped files
+	 */
+	function print_grouped_files($groups) {
+
+		foreach ($groups as $key => $group) {
+			    sort($group);
+			    echo "<h2>$key</h2>\n";
+			    echo "<ul>\n";
+			    foreach ($group as $path) {
+				    echo "<li>$path</li>";
+			    }
+			    echo "</ul>\n";
+		}
 	}
 }
 
