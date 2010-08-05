@@ -52,6 +52,7 @@ class groupedFileFind {
 
 	/*
 	 * Finds all files in a directory recursively 
+	 * returns associative array where key is full path, value is short file name
 	 */
 	function all_files($dir, $depth, $maxdepth) {
 		$paths = array();
@@ -66,7 +67,7 @@ class groupedFileFind {
 					if (is_dir($fullpath)) {
 						$paths = array_merge($paths, $this->all_files($fullpath, $depth + 1, $maxdepth));
 					} else {
-						array_push($paths, $fullpath);
+						$paths[$fullpath] = $file;
 					}
 				}
 			}
@@ -81,11 +82,13 @@ class groupedFileFind {
 
 		$all_files = $this->all_files($dir, 0, $maxdepth);
 
+		asort($all_files);
+
 		$groups = array();
 
 		$groups['foo'] = array( 'Bb/foob', 'Bb/fooz', 'Bb/fooa');
 		$groups['bar'] = array( 'Bb/barfoob', 'Bb/barfooz');
-		$groups['paths'] = $all_files;
+		$groups['paths'] = array_values($all_files);
 
 		ksort($groups);
 
