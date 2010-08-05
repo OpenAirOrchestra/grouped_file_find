@@ -78,6 +78,9 @@ class groupedFileFind {
 						if (strlen($name) > 0) {
 							$paths[$fullpath] = $name;
 						}
+
+						// treat _ as ' '
+						$name = strtr($name, "-_", "  ");
 					}
 				}
 			}
