@@ -66,6 +66,7 @@ class groupedFileFind {
 						array_push($paths, $fullpath);
 					}
 				}
+			}
 		}
 
 		return $paths;
