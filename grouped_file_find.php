@@ -80,7 +80,7 @@ class groupedFileFind {
 						$name = strtr($name, "-_", "  ");
 
 						// remove '
-						$name = str_replace("'", "");
+						$name = str_replace("'", "", $name);
 
 						// strip trailing number
 						$words = explode(' ', $name);
