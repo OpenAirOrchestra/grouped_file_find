@@ -49,14 +49,39 @@ class groupedFileFind {
 	}
 
 	/*
+	 * Finds all files in a directory recursively 
+	 */
+	function all_files($dir) {
+		$paths = array();
+
+		if(is_dir($dir) && $handle = opendir($dir)) {
+
+			while(false !==($file = readdir($handle))) {
+				
+				if($file != '..' && $file != '.') {
+					$fullpath = $dir . '/' . $file;
+					if (isdir($fullpath)) {
+						$paths = array_merge($paths, $this->all_files($fullpath));
+					} else {
+						array_push($paths, $fullpath);
+					}
+				}
+		}
+
+		return $paths;
+	}
+	/*
 	 * Groups files and puts 'em in associateive array keyed by group
 	 */
 	function group_files($dir) {
+
+		$all_files = find_files($dir);
 
 		$groups = array();
 
 		$groups['foo'] = array( 'Bb/foob', 'Bb/fooz', 'Bb/fooa');
 		$groups['bar'] = array( 'Bb/barfoob', 'Bb/barfooz');
+		$groups['paths'] = $all_files;
 
 		ksort($groups);
 
