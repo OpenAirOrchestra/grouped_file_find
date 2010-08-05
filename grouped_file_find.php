@@ -46,7 +46,7 @@ class groupedFileFind {
 
 		$groups = $this->group_files(ABSPATH . $src, $maxdepth);
 		if ($groups && count($groups) > 0) {
-			$this->print_grouped_files($groups);
+			$this->print_grouped_files($src, $groups);
 		}
 	}
 
@@ -153,7 +153,7 @@ class groupedFileFind {
 	/*
 	 * Outputs grouped files
 	 */
-	function print_grouped_files($groups) {
+	function print_grouped_files($dir, $groups) {
 
 		foreach ($groups as $key => $group) {
 			    sort($group);
@@ -163,12 +163,14 @@ class groupedFileFind {
 
 				    $relpath = str_replace(ABSPATH, "", $path);
 
-				    $url = urlencode($relpath);
+				    $url = rawurlencode($relpath);
 				    $url = str_replace("%2F", "/", $url);
 
 				    $url = get_bloginfo('url') . '/' . $url;
 
-				    echo '<li><a href="' . $url. '">' . $relpath . '</a></li>' . "\n";
+				    $display = str_replace($dir, "", $relpath);
+
+				    echo '<li><a href="' . $url. '">' . $display . '</a></li>' . "\n";
 			    }
 			    echo "</ul>\n";
 		}
