@@ -160,7 +160,10 @@ class groupedFileFind {
 			    echo "<h4>$key</h4>\n";
 			    echo "<ul>\n";
 			    foreach ($group as $path) {
-				    echo "<li>$path</li>";
+
+				    $relpath = str_replace(ABSPATH, "", $path);
+
+				    echo "<li>$relpath</li>";
 			    }
 			    echo "</ul>\n";
 		}
