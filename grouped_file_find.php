@@ -96,9 +96,23 @@ class groupedFileFind {
 
 		$groups = array();
 
-		$groups['foo'] = array( 'Bb/foob', 'Bb/fooz', 'Bb/fooa');
-		$groups['bar'] = array( 'Bb/barfoob', 'Bb/barfooz');
-		$groups['paths'] = array_keys($all_files);
+		// Group by similar prefix
+		$prefix = NULL;
+		foreach ($all_files as $path => $name) {
+			if (! $prefix || strncmp($name, $prefix, strlen($prefix)) != 0) {
+				$prefix = $name;
+				$groups[$prefix] = array( $path );
+			} else {
+				array_push($groups[$prefix], $path);
+			}
+		}
+
+		/*
+		function str_startswith($source, $prefix)
+		{
+			   return strncmp($source, $prefix, strlen($prefix)) == 0;
+		}
+		 */
 
 		ksort($groups);
 
@@ -111,7 +125,7 @@ class groupedFileFind {
 	function print_grouped_files($groups) {
 
 		foreach ($groups as $key => $group) {
-			    // sort($group);
+			    sort($group);
 			    echo "<h4>$key</h4>\n";
 			    echo "<ul>\n";
 			    foreach ($group as $path) {
