@@ -60,7 +60,7 @@ class groupedFileFind {
 				
 				if($file != '..' && $file != '.') {
 					$fullpath = $dir . '/' . $file;
-					if (isdir($fullpath)) {
+					if (is_dir($fullpath)) {
 						$paths = array_merge($paths, $this->all_files($fullpath));
 					} else {
 						array_push($paths, $fullpath);
