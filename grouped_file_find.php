@@ -168,7 +168,7 @@ class groupedFileFind {
 
 				    $url = get_bloginfo('url') . '/' . $url;
 
-				    echo "<li>$url</li>";
+				    echo '<li><a href="$url">$relpath</a></li>\n';
 			    }
 			    echo "</ul>\n";
 		}
