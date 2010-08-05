@@ -90,7 +90,7 @@ class groupedFileFind {
 		$groups['bar'] = array( 'Bb/barfoob', 'Bb/barfooz');
 		$groups['paths'] = array_keys($all_files);
 
-		ksort($groups);
+		// ksort($groups);
 
 		return $groups;
 	}
