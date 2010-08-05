@@ -67,7 +67,17 @@ class groupedFileFind {
 					if (is_dir($fullpath)) {
 						$paths = array_merge($paths, $this->all_files($fullpath, $depth + 1, $maxdepth));
 					} else {
-						$paths[$fullpath] = $file;
+						$name = $file;
+						// strip file extension
+						$ext = strrchr($name, '.');  
+						if($ext !== false)  {  
+							$name = substr($name, 0, -strlen($ext));  
+						}  
+						// lowercase
+						$name = strtolower($name);
+						if (strlen($name) > 0) {
+							$paths[$fullpath] = $name;
+						}
 					}
 				}
 			}
