@@ -79,6 +79,9 @@ class groupedFileFind {
 						// treat _ as ' '
 						$name = strtr($name, "-_", "  ");
 
+						// remove '
+						$name = str_replace("'", "");
+
 						// strip trailing number
 						$words = explode(' ', $name);
 						$count = count($words);
