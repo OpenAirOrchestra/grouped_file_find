@@ -157,7 +157,7 @@ class groupedFileFind {
 
 		foreach ($groups as $key => $group) {
 			    sort($group);
-			    echo "<h4>$key</h4>\n";
+			    echo "<h4><a name=\"$key\">$key</a></h4>\n";
 			    echo "<ul>\n";
 			    foreach ($group as $path) {
 
