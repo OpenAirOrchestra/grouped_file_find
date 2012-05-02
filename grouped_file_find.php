@@ -105,7 +105,8 @@ class groupedFileFind {
 							}
 						}
 
-						if (strlen($name) > 0) {
+						if (strlen($name) > 0 && 
+						    $name[0] != '.') {
 							$paths[$fullpath] = $name;
 						}
 
