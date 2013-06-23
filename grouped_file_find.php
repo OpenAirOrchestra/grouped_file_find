@@ -51,6 +51,28 @@ class groupedFileFind {
 	}
 
 	/*
+ 	 * Returns true if file should be skipped, false otherwise
+	 */
+	function skip_file($file) {
+
+		// paranoia
+		if (strlen($file) == 0) {
+			return true;
+		}
+		// Skip hidden files
+		if($file[0] == '.') {
+			return true;
+		}
+
+		// Skip WP-Filebase previews
+		if (preg_match("/-\d+x\d+\./", $file)) {
+			return true;
+		}
+
+		return false; // don't skip
+	}
+
+	/*
 	 * Finds all files in a directory recursively 
 	 * returns associative array where key is full path, value is short file name
 	 */
@@ -62,7 +84,7 @@ class groupedFileFind {
 
 			while(false !==($file = readdir($handle))) {
 				
-				if($file != '..' && $file != '.') {
+				if(! $this->skip_file($file)) {
 					$fullpath = $dir . '/' . $file;
 					if (is_dir($fullpath)) {
 						$paths = array_merge($paths, $this->all_files($fullpath, $depth + 1, $maxdepth));
