@@ -1,5 +1,5 @@
 === Inverted Directory Tree ===
-Contributors: Darrylf
+Contributors: Darrylf, Richard K
 Donate link: http://www.thecarnivalband.com/
 Tags: comments, spam
 Requires at least: 3.0.0
