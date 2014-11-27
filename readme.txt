@@ -2,8 +2,8 @@
 Contributors: Darrylf, Richard K
 Donate link: http://www.thecarnivalband.com/
 Tags: comments, spam
-Requires at least: 3.0.0
-Tested up to: 3.0.0
+Requires at least: 3.9
+Tested up to: 4.0.1
 
 Displays files in a directory tree in groups of similar files.
 
